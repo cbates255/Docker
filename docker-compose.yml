@@ -1,9 +1,10 @@
 version: '2'
 
 services:
-  projectnginx:
-    build: .
-    image: cbates255/nginx
+  project:
+    image: cbates255/projectimage
+    volumes:
+      - /mnt/project:/var/lib:rw
     ports:
       - '8080:80'
-    
+  
