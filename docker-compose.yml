@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+  projectnginx:
+    build: .
+    image: cbates255/nginx
+    ports:
+      - '8080:80'
+    
