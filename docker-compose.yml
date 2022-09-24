@@ -4,7 +4,7 @@ services:
   project:
     image: httpd
     volumes:
-      - /mnt/project:/mnt:rw
+      - /mnt/project:/usr/local/apache2/htdocs:rw
     ports:
-      - '8080:80'
+      - '80:80'
   
