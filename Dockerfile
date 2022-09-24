@@ -1,4 +1,5 @@
 FROM nginx:latest
 
-COPY nginxCreation.txt /var/lib/nginxCreation.txt
+WORKDIR /var/lib
 
+RUN echo 'The nginx image was created on ' $(date). >> nginxCreation.txt

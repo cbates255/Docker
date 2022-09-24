@@ -2,7 +2,7 @@ version: '2'
 
 services:
   project:
-    image: cbates255/projectimage
+    image: nginx
     volumes:
       - /mnt/project:/var/lib:rw
     ports:
