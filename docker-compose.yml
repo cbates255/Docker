@@ -2,9 +2,9 @@ version: '2'
 
 services:
   project:
-    image: nginx
+    image: httpd
     volumes:
-      - /mnt/project:/var/lib:rw
+      - /mnt/project:/mnt:rw
     ports:
       - '8080:80'
   
