@@ -24,3 +24,24 @@ spec:
       limits:
         memory: "128Mi"
         cpu: "500m"
+kind: PersistentVolume
+metadata:
+  name: projectvolume
+spec:
+  capacity:
+    storage: 100m
+  volumeMode: Filesystem
+  accessModes:
+  - ReadWrite
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: local-storage
+  local:
+    path: /mnt/project
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - projectpod
