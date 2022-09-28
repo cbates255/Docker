@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: projectpod
+spec:
+  containers:
+  - name: webserver
+    image: nginx
+    ports:
+    - containerPort: 80
+    volumeMounts:
+      - mountPath: /data
+        name: localmount
+  - name: debiandist
+    image: debian
+    ports:
+    - containerPort: 80
+  volumes:
+    - name: localmount
+      hostPath:
+        path: /mnt/project
