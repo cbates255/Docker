@@ -9,13 +9,13 @@ spec:
     ports:
     - containerPort: 80
     volumeMounts:
-      - mountPath: /data
+      - mountPath: /project
         name: localmount
-  - name: debiandist
+  - name: dist
     image: debian
-    ports:
-    - containerPort: 80
+    command: ["sh", "-c", "tail -f /dev/null"]
+  
   volumes:
     - name: localmount
       hostPath:
-        path: /mnt/project
+        path: /mnt/kubermount
