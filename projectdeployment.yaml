@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: projecttoday
+spec:
+  selector:
+    matchLabels:
+      app: projecttoday
+  template:
+    metadata:
+      labels:
+        app: projecttoday
+    spec:
+      volumes:
+      - name: localmount
+        hostPath:
+          path: /home/chad/local
+      containers:
+      - name: webserver
+        image: nginx
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+        volumeMounts:
+          - mountPath: /home/chad/container
+            name: localmount
+      - name: dist
+        image: debian
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        command: ["sh", "-c", "tail -f /dev/null"]

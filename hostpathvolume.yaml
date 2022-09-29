@@ -3,6 +3,10 @@ kind: Pod
 metadata:
   name: projectpod
 spec:
+  volumes:
+  - name: localmount
+    hostPath:
+      path: /home/chad/newmount
   containers:
   - name: webserver
     image: nginx
@@ -13,7 +17,7 @@ spec:
     ports:
       - containerPort: 80
     volumeMounts:
-      - mountPath: /home/newmount/
+      - mountPath: /home/chad/newmount
         name: localmount
   - name: dist
     image: debian
@@ -22,7 +26,4 @@ spec:
         memory: "128Mi"
         cpu: "500m"
     command: ["sh", "-c", "tail -f /dev/null"]
-  volumes:
-    - name: localmount
-      hostPath:
-        path: /home/chad/newmount/
+
