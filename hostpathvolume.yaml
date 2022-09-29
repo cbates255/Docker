@@ -13,7 +13,7 @@ spec:
     ports:
       - containerPort: 80
     volumeMounts:
-      - mountPath: /var/log/
+      - mountPath: /var/project/
         name: localmount
   - name: dist
     image: debian
@@ -25,4 +25,4 @@ spec:
   volumes:
     - name: localmount
       hostPath:
-        path: /var/log/
+        path: /var/project/
