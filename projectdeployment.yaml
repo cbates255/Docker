@@ -3,18 +3,22 @@ kind: Deployment
 metadata:
   name: projecttoday
 spec:
+
   selector:
     matchLabels:
       app: projecttoday
+
   template:
     metadata:
       labels:
         app: projecttoday
+
     spec:
+
       volumes:
-      - name: localmount
-        hostPath:
-          path: /home/chad/local
+      - name: shared
+        emptyDir: {}
+
       containers:
       - name: webserver
         image: nginx
@@ -25,8 +29,9 @@ spec:
         ports:
         - containerPort: 80
         volumeMounts:
-          - mountPath: /home/chad/container
-            name: localmount
+          - mountPath: /data
+            name: shared
+
       - name: dist
         image: debian
         resources:
@@ -34,3 +39,7 @@ spec:
             memory: "128Mi"
             cpu: "500m"
         command: ["sh", "-c", "tail -f /dev/null"]
+        volumeMounts:
+          - mountPath: /data
+            name: shared
+            
